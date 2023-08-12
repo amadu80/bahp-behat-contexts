@@ -285,4 +285,12 @@ class RestContext extends BaseContext
 
         echo "curl -X $method$data$headers '$url'";
     }
+
+    /**
+     * @return Request
+     */
+    public function getRequest(): Request
+    {
+        return $this->request;
+    }
 }

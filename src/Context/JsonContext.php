@@ -403,9 +403,7 @@ class JsonContext extends BaseContext
         }, 'JSON Schema matches but it should not');
     }
 
-
-
-    protected function getJson()
+    public function getJson()
     {
         return new Json($this->httpCallResultPool->getResult()->getValue());
     }
