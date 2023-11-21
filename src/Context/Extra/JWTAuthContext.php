@@ -61,7 +61,12 @@ class JWTAuthContext implements Context
         $users = $this->manager
             ->getRepository(User::class)
             ->findAll();
-        $this->user = $users[0];
+
+        if (empty($users)) {
+            return;
+        }
+
+        $this->user = current($users);
         $this->token = $this->jwtManager->create($this->user);
         $this->restContext->iAddHeaderEqualTo('Authorization', "Bearer $this->token");
     }

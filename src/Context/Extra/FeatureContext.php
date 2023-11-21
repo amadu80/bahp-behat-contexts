@@ -7,6 +7,8 @@ namespace Behatch\Context\Extra;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Behat\Tester\Exception\PendingException;
+use Behat\Gherkin\Node\PyStringNode;
 use Behat\Mink\Exception\ResponseTextException;
 use Doctrine\DBAL\Connection;
 
@@ -161,5 +163,11 @@ class FeatureContext implements Context
     public function userWithIdNeverLogin($id)
     {
         $this->connection->exec(sprintf('UPDATE user_account SET last_login = NULL WHERE id = %s', $id));
+    }
+
+    /** @Given show todo message: */
+    public function todoMessage(PyStringNode $text)
+    {
+        throw new PendingException(sprintf('Todo: "%s"', $text));
     }
 }
